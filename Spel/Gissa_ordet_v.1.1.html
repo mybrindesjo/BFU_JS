@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gissa ordet</title>
+    <style>
+        body {
+			background-color: #caa55f;
+			text-align: center;
+		}
+
+		input {
+			margin-top: 10px;
+			font-size: 1em;
+		}
+		
+		button {
+			margin-top: 10px;
+			font-size: 1em;
+			padding: 5px;
+			background-color: rgb(255, 153, 0);
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		
+		output {
+			margin-top: 20px;
+			width: 400px;
+			height: 200px;
+			padding: 10px;
+			text-align: left;
+			font-size: 1.2em;
+            font-family: monospace;
+		}
+    </style>
+</head>
+<body>
+	<div class="word" id="word"></div>
+	<input type="text" id="inputField" placeholder="Gissa på en bokstav">
+	<button id="guessButton">Gissa</button>
+    <button id="clearoutput">Rensa</button>
+	<div id="output"></div>
+
+	<script>
+
+		// LISTA MED ORD SOM ANVÄNDS SLUMPVIS //
+		const words = ["stol",
+          "bord",
+          "hund",
+          "katt",
+          "häst",
+          "elefant",
+          "krokodil",
+          "programering",
+          "berg",
+          "schack",
+          "elvisp",
+          "blomma",
+          "vildsvin",
+          "träd",
+          "staket",
+          "studsmatta",
+          "hus",
+          "vedträ",
+          "fönster",
+          "julgran",
+		  "åsna" ];
+		
+
+		// SLUMPVIS VÄLJA ORD //
+        let word = words[Math.floor(Math.random() * words.length)];    
+		
+		// HEMLIGA ORDET //
+		for (let i = 0; i < word.length; i++) {
+			guessWord += "_ ";
+		}
+			for (let i = 0; i < word.length; i++) {
+				if (guessedLetters.includes(word[i])) {
+					guessWord += word[i] + " ";
+				} else {
+					guessWord += "_ ";
+				}
+			}
+
+		// HANTERA GISSNINGARNA //
+		let guessedLetters = [];
+		
+		function handleGuess() {
+			if (guessedLetters.includes(guess)) {
+				print("Du har redan gissat på '" + guess + "'.");
+			}
+			
+		// VINNST //
+			if (guessWord.includes("_")) {
+				print("Grattis, du vann! Ordet var '" + word + "'.");
+			}
+		
+		// GISSADE BOKSTÄVER //
+			document.getElementById("word");
+			print("Gissade bokstäver: " + guess + ", ");
+		}
+
+		// FÄRDIGA FUNTIONER SOM FÖRENKLAR //
+		function print(text){
+			document.getElementById("output").innerHTML += text;
+		}
+
+		function newLine(){
+			document.getElementById("output").innerHTML += "\n";
+		}
+
+		function clear(){
+			document.getElementById("output").innerHTML = "";
+		}
+		function displayOutput(str) {
+			document.getElementById("output").textContent += str + "\n";
+		}
+			
+		document.getElementById("clearoutput").onclick = function(){
+			document.getElementById("output").innerHTML = "";
+		}
+	</script>
+</body>
+</html>
